@@ -25,3 +25,17 @@ Users will be able to...
 2. Input the mount of time they have available for a walk
 3. get an auto generated playlist from spotify that matches their current mood.
 4. get a map in which they will see a route for them to walk that matches the length of the playlist
+
+## Technologies Used
+
+1. AJAX
+2. JQuery
+3. JavaScript
+4. HTML
+5. CSS
+6. API
+
+### Links to Api's docs
+
+Spotify: https://developer.spotify.com/documentation/web-api/reference-beta/
+Traveltime: https://traveltime.com/docs/api/overview/introduction?ref=apilist.fun
