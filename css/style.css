@@ -1,0 +1,9 @@
+.form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.formInputDiv {
+    margin: auto;
+    width: 20%;
+}

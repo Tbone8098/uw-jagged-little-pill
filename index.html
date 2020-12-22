@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- UiKit CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/css/uikit.min.css" />
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Jagged Little Pill</title>
-</head>
-
-<body>
-    <div class="container"></div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/js/uikit-icons.min.js"></script>
-    <script src="./js/script.js"></script>
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="./js/LandingPageScript.js"></script>
+        <link rel="stylesheet" href="./css/style.css">
+        <title>Jagged Little Pill</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="formInputDiv">
+                <form class="formInput">
+                    <input type="text" name="name" id="name" placeholder="Your Name">
+                    <input type="text" name="mood" id="mood" placeholder="Your Mood">
+                    <input type="number" name="walkLen" id="walkLen" placeholder="Length of your walk">
+                    <button>Submit</button>
+                </form>
+            </div>
+            <div class="imgLoc"></div>
+        </div>
+    </body>
 </html>
