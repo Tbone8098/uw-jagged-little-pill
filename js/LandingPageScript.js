@@ -1,3 +1,5 @@
+import { TT_Mood_AccessKey, TT_YouTubeKey } from "./Keys";
+
 $(document).ready(function () {
     // ***************** On PAGE LOAD
 
@@ -24,9 +26,7 @@ $(document).ready(function () {
     // ***************** FUNCTIONS
     // MOOD API
     async function getMoodImg(mood) {
-        const TT_AccessKey = "SZbxYpkVWzGzWeanAOAvuU8zlu0eqzAueOem0YFlS_g";
-
-        var moodURL = `https://api.unsplash.com/search/photos?query=${mood}&client_id=${TT_AccessKey}`;
+        var moodURL = `https://api.unsplash.com/search/photos?query=${mood}&client_id=${TT_Mood_AccessKey}`;
 
         const moodImg = await $.ajax({
             url: moodURL,
@@ -35,9 +35,7 @@ $(document).ready(function () {
     }
 
     // SONG API
-    async function makePlayList(keyWord, timeInterval) {
-        const TT_YouTubeKey = "AIzaSyAH1C73Q6GGpzE9U8i87s1Du3NIVGyD7R4";
-    }
+    async function makePlayList(keyWord, timeInterval) {}
 
     function displayOnDOM(item) {
         console.log(item);
