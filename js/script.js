@@ -1,6 +1,7 @@
 var submitBtn = document.querySelector("#submitBtn")
 
-submitBtn.addEventListener("click",function(event){
+submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    location.href = "dashboard.html"   
+    location.href = "dashboard.html"
 })
+
