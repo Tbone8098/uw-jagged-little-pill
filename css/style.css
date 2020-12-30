@@ -1,3 +1,8 @@
-/* main {
-    background-image: url(https://i.postimg.cc/nzkwL4gB/Landing-Background.png);
-} */
+.body {  
+  padding : 0px ;
+  margin : 0px ;
+  width : 100wv ;
+  height : 100hv;
+  background-image: url("https://i.postimg.cc/nzkwL4gB/Landing-Background.png");
+  background-size: cover;
+}
