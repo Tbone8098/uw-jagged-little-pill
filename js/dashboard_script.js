@@ -2,7 +2,7 @@ $(document).ready(async function () {
     // get mood from localstorage
     var name = "Tyler";
     var mood = "happy";
-    var timeGiven = 48;
+    var timeGiven = 15;
     var timeGivenInMilli = timeGiven * 60 * 1000;
     console.log(timeGivenInMilli);
 
@@ -10,13 +10,13 @@ $(document).ready(async function () {
     const allSongs = await getSongsAPI(mood);
     console.log(allSongs);
 
-    // create new var: totalPlaylistDuration (int)
+    // create new var: totalPlaylistDuration (int) time in milliseconds
     var totalPlaylistDuration = 0;
 
     // create new var: Playlist (dict)
     var playList = [];
 
-    // loop (do while) through length of returned array
+    // loop (while) through length of returned array
     var songsNumAlreadyChosen = [];
     var i = 0;
     while (totalPlaylistDuration < timeGivenInMilli) {
@@ -28,8 +28,8 @@ $(document).ready(async function () {
         // pick one at random
         var ranNum = Math.floor(Math.random() * allSongs[mood].length);
         if (songsNumAlreadyChosen.indexOf(ranNum) == -1) {
-            var currentSong = allSongs[mood][ranNum];
             songsNumAlreadyChosen.push(ranNum);
+            var currentSong = allSongs[mood][ranNum];
 
             // add to playlist
             playList.push(currentSong.youtubeId);
@@ -46,7 +46,6 @@ $(document).ready(async function () {
             i++;
         }
     }
-    // while (i < allSongs[mood].length);
 
     console.log(totalPlaylistDuration);
     console.log(playList);
@@ -61,3 +60,14 @@ async function getSongsAPI(mood) {
 
     return allSongs;
 }
+
+let map;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+}
+
+initMap();

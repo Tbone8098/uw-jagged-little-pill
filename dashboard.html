@@ -13,7 +13,12 @@
         <link
         rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/css/uikit.min.css"/>
         <!-- local CSS -->
-        <link rel="stylesheet" href="./css/style.css">
+        <link
+        rel="stylesheet" href="./css/style.css">
+        <!-- google maps -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" defer></script>
+
         <title>Jagged Little Pill</title>
     </head>
 
@@ -49,17 +54,14 @@
                         <!-- YouTube Player -->
                         <section id="youtubeDisplay" class="uk-position-large uk-position-bottom-left uk-overlay-primary uk-overflow-auto uk-responsive">
 
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/bixuI_GV5I0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/bixuI_GV5I0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         </section>
 
                         <!-- Map Display -->
-                        <section id="mapDisplay" class="uk-position-large uk-position-bottom-right uk-overlay-primary uk-overflow-auto uk-responsive">
+                        <section id="mapDisplay" class="uk-position-large uk-position-bottom-right uk-overlay-primary uk-overflow-auto uk-responsive"></section>
 
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m38!1m12!1m3!1d12767.108837447035!2d-122.36931389258255!3d47.72414163619439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m23!3e2!4m5!1s0x549016b6671033ed%3A0x9a53f6273e5960b0!2s11551%20Greenwood%20Ave%20N%2C%20Seattle%2C%20WA%2098133%2C%20USA!3m2!1d47.713827699999996!2d-122.3561311!4m3!3m2!1d47.7340966!2d-122.3556029!4m3!3m2!1d47.734075!2d-122.3608823!4m3!3m2!1d47.7141709!2d-122.36088369999999!4m3!3m2!1d47.713841699999996!2d-122.3561151!5e0!3m2!1sen!2sus!4v1609194963853!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-
-                        </section>
-
+                        <div id="map"></div>
 
                     </div>
                 </div>
