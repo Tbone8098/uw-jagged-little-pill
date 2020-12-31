@@ -36,27 +36,35 @@
                         <div
                             class="uk-overlay uk-overlay-light uk-position-center">
                             <!-- Input Form -->
-                            <form>
+                            <form id="user-input">
 
                                 <!-- Name Field -->
                                 <div class="uk-margin">
                                     <div class="uk-inline">
                                         <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                        <input class="uk-input" type="text" id="nameInput" placeholder="Your Name">
+                                        <input class="uk-input" type="text" id="name-input" placeholder="Your Name" name="name">
                                     </div>
                                 </div>
                                 <!-- Mood Field -->
                                 <div class="uk-margin">
-                                    <div class="uk-inline">
+                                    <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon" uk-icon="icon: heart"></span>
-                                        <input class="uk-input" type="text" id="moodInput" placeholder="Your Mood">
+                                        <!-- <input class="uk-input" type="text" id="mood-input" placeholder="Your Mood" name="mood"> -->
+                                        <select class="uk-select" name="mood" id="mood-input">
+                                            <option class="uk-align-center" value="happy">Happy</option>
+                                            <option class="uk-align-center" value="sad">Sad</option>
+                                            <option class="uk-align-center" value="anger">Anger</option>
+                                            <option class="uk-align-center" value="depressing">Depressing</option>
+                                            <option class="uk-align-center" value="calm">Calm</option>
+                                            <option class="uk-align-center" value="energizing">Energizing</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- Time Field -->
                                 <div class="uk-margin">
                                     <div class="uk-inline">
                                         <span class="uk-form-icon" uk-icon="icon: future"></span>
-                                        <input class="uk-input" type="number" id="timeInput" placeholder="Length of Walk (min)">
+                                        <input class="uk-input" type="number" id="time-input" placeholder="Length of Walk (min)" name="time">
                                     </div>
                                 </div>
 
