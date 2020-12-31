@@ -1,8 +1,11 @@
 $(document).ready(async function () {
     // get mood from localstorage
-    var name = "Tyler";
-    var mood = "happy";
-    var timeGiven = 15;
+    var userObject = JSON.parse(localStorage.getItem("userInfo"));
+    var name = userObject["name"];
+    var mood = userObject["mood"];
+    var timeGiven = userObject["time"];
+    console.log(`name:${name} mood:${mood} timeGiven:${timeGiven}`);
+
     var timeGivenInMilli = timeGiven * 60 * 1000;
     console.log(timeGivenInMilli);
 
@@ -60,14 +63,3 @@ async function getSongsAPI(mood) {
 
     return allSongs;
 }
-
-let map;
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-    });
-}
-
-initMap();
