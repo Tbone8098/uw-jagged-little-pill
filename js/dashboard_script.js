@@ -4,14 +4,11 @@ $(document).ready(async function () {
     var name = userObject["name"];
     var mood = userObject["mood"];
     var timeGiven = userObject["time"];
-    console.log(`name:${name} mood:${mood} timeGiven:${timeGiven}`);
 
     var timeGivenInMilli = timeGiven * 60 * 1000;
-    console.log(timeGivenInMilli);
 
     // call sheets API and get all songs for mood.
     const allSongs = await getSongsAPI(mood);
-    console.log(allSongs);
 
     // create new var: totalPlaylistDuration (int) time in milliseconds
     var totalPlaylistDuration = 0;
@@ -50,16 +47,44 @@ $(document).ready(async function () {
         }
     }
 
-    console.log(totalPlaylistDuration);
-    console.log(playList);
+    // console.log(totalPlaylistDuration);
+    // console.log(playList);
+
+    // functions **************************
+    async function getSongsAPI(mood) {
+        const allSongs = await $.ajax({
+            url: `https://api.sheety.co/e91f710c44d8c38d5fbfefc51481c7ee/songs/${mood}`,
+            method: "get",
+        });
+
+        return allSongs;
+    }
+
+    // async function showPosition() {
+    //     navigator.geolocation.getCurrentPosition(success);
+    // }
+
+    // function success(position) {
+    //     var lat = position.coords.latitude;
+    //     var long = position.coords.longitude;
+    //     var yourLoc = {
+    //         lat: lat,
+    //         long: long,
+    //     };
+    //     initMap(yourLoc);
+    // }
+
+    // showPosition();
+
+    // ****************** google maps *******************
+    var map;
+    function initMap() {
+        var center = new google.maps.LatLng(37.422, -122.084058);
+        (map = new google.maps.Map(document.getElementById("google_map"))),
+            {
+                center: center,
+                zoom: 13,
+            };
+    }
+    initMap();
 });
-
-// functions **************************
-async function getSongsAPI(mood) {
-    const allSongs = await $.ajax({
-        url: `https://api.sheety.co/e91f710c44d8c38d5fbfefc51481c7ee/songs/${mood}`,
-        method: "get",
-    });
-
-    return allSongs;
-}

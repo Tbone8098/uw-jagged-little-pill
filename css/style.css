@@ -8,13 +8,18 @@
     width: 20%;
 }
 
+/* google maps */
+#mapid {
+    height: 700px;
+    width: 700px;
+  }
+
 /* ************* Utilities ************** */
 /* btns */
 .btn {
     margin: 0.5em;
     padding: 0.25em 0.5em;
     border: 1px solid black;
-    /* border-radius: 5px; */
     text-decoration: none;
     color: black;
 }
