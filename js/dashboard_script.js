@@ -18,6 +18,7 @@ $(document).ready(async function () {
 
     // create new var: Playlist (dict)
     var playList = [];
+    var playListTimes = []
 
     // loop (while) through length of returned array
     var songsNumAlreadyChosen = [];
@@ -44,6 +45,9 @@ $(document).ready(async function () {
             var secondsInMilli = parseInt(durationArray[2]) * 1000;
             var duration = hoursInMilli + minutesInMilli + secondsInMilli;
 
+            // add time to playListTimes
+            playListTimes.push(duration)
+
             // add duration from api to totalPlaylistDuration
             totalPlaylistDuration += duration;
             i++;
@@ -52,14 +56,75 @@ $(document).ready(async function () {
 
     console.log(totalPlaylistDuration);
     console.log(playList);
+    console.log(playListTimes);
+
+    // functions **************************
+    async function getSongsAPI(mood) {
+        const allSongs = await $.ajax({
+            url: `https://api.sheety.co/e91f710c44d8c38d5fbfefc51481c7ee/songs/${mood}`,
+            method: "get",
+        });
+
+        return allSongs;
+    }
+    // YouTube Player
+    var ytplayerEL = $("#ytplayer")
+
+
+    var playListIndex = 0
+    var currentSongLengthInMilliseconds = 100
+
+    var currentSongBeingPlayed = setInterval(function () {
+        currentSongLengthInMilliseconds = playListTimes[playListIndex]
+
+        console.log(currentSongLengthInMilliseconds);
+
+        var currentSongId = playList[playListIndex]
+
+        var src = `https://www.youtube.com/embed/${currentSongId}?autoplay=1&origin=http://example.com`
+
+        ytplayerEL.attr("src", src)
+
+        playListIndex++
+
+        if (playListIndex == playList.length) {
+            clearInterval(currentSongBeingPlayed);
+        }
+    }, currentSongLengthInMilliseconds);
+
+
+
+
+
+
+
+
+    // var tag = document.createElement('script');
+
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // var firstScriptTag = document.getElementsByTagName('script')[0];
+    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+    // var player;
+    // function onYouTubeIframeAPIReady() {
+    //     player = new YT.Player('player', {
+    //         height: '390',
+    //         width: '640',
+    //         videoId: 'M7lc1UVf-VE',
+    //         events: {
+    //             'onReady': onPlayerReady,
+    //             'onStateChange': onPlayerStateChange
+    //         }
+    //     });
+    //     // Load Playlist Array into Player
+    //     player.loadPlaylist(playlist: playList)
+    // }
+
+
+    // onYouTubeIframeAPIReady()
+
+    // for (var i = 0; i < playList.length; i++) {
+    //     player.nextVideo()
+    // }
 });
-
-// functions **************************
-async function getSongsAPI(mood) {
-    const allSongs = await $.ajax({
-        url: `https://api.sheety.co/e91f710c44d8c38d5fbfefc51481c7ee/songs/${mood}`,
-        method: "get",
-    });
-
-    return allSongs;
-}
