@@ -21,20 +21,21 @@
     <!-- NavBar -->
     <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
         <div class="uk-navbar-center">
-            <a href="/index.html" class="btn">Back</a>
             <h1 class="uk-navbar-item uk-logo">Mood Tunes</h1>
+            <a href="index.html" class="uk-button-text uk-navbar-subtitle">Start Over</a>
+        </div>
     </nav>
 
-    <main class="uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" uk-grid>
+    <main class="uk-flex-stretch uk-flex uk-flex-center uk-resize" uk-grid>
 
         <div>
 
             <div class="uk-inline">
-                <img src="https://i.postimg.cc/nzkwL4gB/Landing-Background.png"
+                <img class="uk-background-cover" src="https://i.postimg.cc/nzkwL4gB/Landing-Background.png"
                     alt="Glass ball in hand reflecting forest">
 
                 <!-- PlayList Overlay (Top-Left) -->
-                <div class="uk-position-large uk-position-top-left uk-overlay-primary uk-overflow-auto">
+                <div class="uk-position-large uk-position-top-left uk-overlay-primary uk-overflow-auto uk-responsive">
 
                     <h2>Playlist</h2>
 
@@ -50,7 +51,7 @@
                 <section id="youtubeDisplay"
                     class="uk-position-large uk-position-bottom-left uk-overlay-primary uk-overflow-auto uk-responsive">
 
-                    <iframe id="ytplayer" type="text/html" width="640" height="360"
+                    <iframe  id="ytplayer" type="text/html" width="600px" height="340px"
                         src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
                         frameborder="0"></iframe>
 

@@ -81,7 +81,7 @@ $(document).ready(async function () {
 
         var currentSongId = playList[playListIndex]
 
-        var src = `https://www.youtube.com/embed/${currentSongId}?autoplay=1&origin=http://example.com`
+        var src = `https://www.youtube.com/embed/${currentSongId}?autoplay=1&enablejsapi=1`
 
         ytplayerEL.attr("src", src)
 
