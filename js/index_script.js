@@ -9,6 +9,7 @@ $(document).ready(function () {
         console.log(nameInput, moodInput, timeInput);
         // check to see if info on form exists
         if (nameInput === "" || moodInput === "" || timeInput === "") {
+            // else populate and display error message
             alert("Please enter valid information");
             // if true then store to localstorage
         } else {
@@ -23,18 +24,6 @@ $(document).ready(function () {
             location.href = "dashboard.html";
         }
     });
-    // else populate and display error message
 
-    var unsplashApi = `https://api.unsplash.com/search/photos?page=1&client_id=SZbxYpkVWzGzWeanAOAvuU8zlu0eqzAueOem0YFlS_g&query=happy`;
-
-    $.ajax({
-        url: unsplashApi,
-        method: "GET",
-    }).then(function (response) {
-        console.log(response);
-        .attr("src", results.[0].urls.regular);
-    });
 });
 
-//get random photo
-// GET /photos/random
