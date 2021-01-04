@@ -166,7 +166,7 @@ function previousSong() {
 $(document).ready(function () {
     var nextBtn = $(".ytNext");
     var previousBtn = $(".ytPrevious");
-    var ytPlayPauseBtn = $(".ytPlayPause");
+    var playPauseBtn = $(".ytPlayPause");
 
     nextBtn.on("click", (e) => {
         nextSong();
@@ -176,14 +176,17 @@ $(document).ready(function () {
         previousSong();
     });
 
-    ytPlayPauseBtn.on("click", (e) => {
+    playPauseBtn.on("click", (e) => {
         playerState = player.getPlayerState();
         if (playerState < 1) {
             player.playVideo();
+            playPauseBtn.text("Pause");
         } else if (playerState === 1) {
             player.pauseVideo();
+            playPauseBtn.text("Play");
         } else if (playerState === 2) {
             player.playVideo();
+            playPauseBtn.text("Pause");
         }
     });
 });
