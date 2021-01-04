@@ -112,7 +112,7 @@ function makePlayList(songList, timeInMilli) {
 // ********************************************************
 function nextSong() {
     console.log("playing next song");
-    ytplayer(playList[songCount]);
+    onYouTubeIframeAPIReady(playList[songCount]);
     // setupApi();
 }
 
