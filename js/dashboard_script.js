@@ -5,8 +5,10 @@ $(document).ready(async function () {
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
     const allSongs = await getSongsAPI(userObject["mood"]);
+
     var ytId = allSongs[0]["YouTube ID"];
-    onYouTubeIframeAPIReady(ytId);
+
+    ytplayer(allSongs[0]["Youtube ID"]);
 });
 
 // ********************************************************
@@ -55,7 +57,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 var player;
-function onYouTubeIframeAPIReady(videoId) {
+const ytplayer = function onYouTubeIframeAPIReady(videoId) {
+    // var videoId = "M7lc1UVf-VE";
+    console.log(videoId);
+
     player = new YT.Player("player", {
         height: "390",
         width: "640",
@@ -65,7 +70,7 @@ function onYouTubeIframeAPIReady(videoId) {
             onStateChange: onPlayerStateChange,
         },
     });
-}
+};
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
