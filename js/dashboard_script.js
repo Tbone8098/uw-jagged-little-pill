@@ -96,7 +96,7 @@ function makePlayList(allSongs, timeGivenInMilli) {
 function nextSong() {
     console.log("playing next song");
 
-    $("#player").empty();
+    $("#player").html("");
 
     ytplayer(playList[songCount]);
 }
