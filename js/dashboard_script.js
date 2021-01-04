@@ -6,6 +6,9 @@ var playList = [];
 $(document).ready(async function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+    var nameString = "Hello " + userInfo["name"];
+    $("#nameDisplay").text(nameString);
+
     var mood = userInfo.mood;
 
     var unsplashApi = `https://api.unsplash.com/search/photos/?client_id=gSpFkJi69t9bWwKIFq80kb4KWfaf4xLwVPON1yTJD4c&query=${mood}&orientation=landscape`;
