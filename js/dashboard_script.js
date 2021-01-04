@@ -2,13 +2,15 @@
 // ******************************************************** on Page Load
 // ********************************************************
 var songCount = 0;
-var allSongs;
+var playList = [];
 $(document).ready(async function () {
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
-    allSongs = await getSongsAPI(userObject["mood"]);
+    const allSongs = await getSongsAPI(userObject["mood"]);
 
-    ytplayer(allSongs[songCount]["Youtube ID"]);
+    await makePlayList(userObject["mood"], allSongs, timeGivenInMilli);
+
+    ytplayer(playList[songCount]);
 });
 
 // ********************************************************
@@ -22,6 +24,7 @@ async function getSongsAPI(mood) {
         url: `https://spreadsheet.google.com/feeds/cells/1SorEST9_mOlFYCMDWF9ysRn75HOT4X4Q8B0KmMLyOgc/${moodIndex}/public/full?alt=json`,
         method: "get",
     });
+
     var jsonSheetEntries = jsonSheet["feed"]["entry"];
     var allSongs = [];
     var headers = [];
@@ -45,6 +48,51 @@ async function getSongsAPI(mood) {
     return allSongs;
 }
 
+// ********************************************************
+// ******************************************************** Create Playlist
+// ********************************************************
+
+function makePlayList(mood, allSongs, timeGivenInMilli) {
+    // create new var: totalPlaylistDuration (int) time in milliseconds
+    var totalPlaylistDuration = 0;
+
+    var playListTimes = [];
+
+    // loop (while) through length of returned array
+    var songsNumAlreadyChosen = [];
+    var i = 0;
+    while (totalPlaylistDuration < timeGivenInMilli) {
+        // break if it has added all songs to the playlist
+        if (i >= allSongs.length) {
+            // TODO add error message saying all songs are added to playlist
+            break;
+        }
+        // pick one at random
+        var ranNum = Math.floor(Math.random() * allSongs.length);
+        if (songsNumAlreadyChosen.indexOf(ranNum) == -1) {
+            songsNumAlreadyChosen.push(ranNum);
+            currentSong = allSongs[ranNum];
+
+            // add to playlist
+            playList.push(currentSong["Youtube ID"]);
+            // get the duration in milliseconds
+            var durationArray = currentSong.Duration.split(":");
+            var hoursInMilli = parseInt(durationArray[0]) * 60 * 60 * 1000;
+            var minutesInMilli = parseInt(durationArray[1]) * 60 * 1000;
+            var secondsInMilli = parseInt(durationArray[2]) * 1000;
+            var duration = hoursInMilli + minutesInMilli + secondsInMilli;
+            // add time to playListTimes
+            playListTimes.push(duration);
+            // add duration from api to totalPlaylistDuration
+            totalPlaylistDuration += duration;
+            i++;
+        }
+    }
+}
+
+// ********************************************************
+// ******************************************************** Next Song
+// ********************************************************
 function nextSong() {
     console.log(allSongs[songCount]);
 }
