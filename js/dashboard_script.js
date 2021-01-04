@@ -6,6 +6,9 @@ var playList = [];
 $(document).ready(async function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+    var nameString = "Hello " + userInfo["name"];
+    $("#nameDisplay").text(nameString);
+
     var mood = userInfo.mood;
 
     var unsplashApi = `https://api.unsplash.com/search/photos/?client_id=gSpFkJi69t9bWwKIFq80kb4KWfaf4xLwVPON1yTJD4c&query=${mood}&orientation=landscape`;
@@ -177,16 +180,16 @@ $(document).ready(function () {
     });
 
     playPauseBtn.on("click", (e) => {
-        playerState = player.getPlayerState();
+        var playerState = player.getPlayerState();
         if (playerState < 1) {
             player.playVideo();
-            playPauseBtn.html("&#9612");
+            playPauseBtn.html("Pause");
         } else if (playerState === 1) {
             player.pauseVideo();
-            playPauseBtn.html("&5126");
+            playPauseBtn.html("Play");
         } else if (playerState === 2) {
             player.playVideo();
-            playPauseBtn.html("&#9612");
+            playPauseBtn.html("Pause");
         }
     });
 });
