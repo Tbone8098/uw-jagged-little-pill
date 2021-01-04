@@ -49,6 +49,11 @@ footer {
     align-items: center;
 }
 
+.controller {
+    display: flex;
+    justify-content: center;
+}
+
 #logoSpan {
     padding: 10px;
     font-family: 'Noto Serif', serif;
@@ -63,6 +68,7 @@ font-family: 'Lato', sans-serif;
 
 
 /* bg color */
-.bg-white{
-    background: white;
+.cntrlBtn{
+    margin: 5px 5px;
+    font-family: 'Lato', sans-serif;
 }
