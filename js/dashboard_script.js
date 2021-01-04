@@ -94,7 +94,9 @@ function makePlayList(mood, allSongs, timeGivenInMilli) {
 // ******************************************************** Next Song
 // ********************************************************
 function nextSong() {
+    console.log("playing next song");
     ytplayer(playList[songCount]);
+    onPlayerReady();
 }
 
 // ********************************************************
