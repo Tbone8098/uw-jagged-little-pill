@@ -27,7 +27,7 @@ $(document).ready(async function () {
     console.log(allSongs);
     await makePlayList(allSongs, timeGivenInMilli);
     console.log(playList);
-    ytplayer(playList[songCount]);
+    onYouTubeIframeAPIReady(playList[songCount]);
 });
 
 // ********************************************************
@@ -126,7 +126,7 @@ var firstScriptTag = document.getElementsByTagName("script")[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-const ytplayer = function onYouTubeIframeAPIReady(videoId) {
+function onYouTubeIframeAPIReady(videoId) {
     console.log("youtubeId: " + videoId);
 
     player = new YT.Player("player", {
@@ -138,7 +138,7 @@ const ytplayer = function onYouTubeIframeAPIReady(videoId) {
             onStateChange: onPlayerStateChange,
         },
     });
-};
+}
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
