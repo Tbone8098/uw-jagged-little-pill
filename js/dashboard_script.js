@@ -8,7 +8,7 @@ $(document).ready(async function () {
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
     const allSongs = await getSongsAPI(userObject["mood"]);
 
-    await makePlayList(userObject["mood"], allSongs, timeGivenInMilli);
+    await makePlayList(allSongs, timeGivenInMilli);
 
     ytplayer(playList[songCount]);
 });
@@ -52,7 +52,7 @@ async function getSongsAPI(mood) {
 // ******************************************************** Create Playlist
 // ********************************************************
 
-function makePlayList(mood, allSongs, timeGivenInMilli) {
+function makePlayList(allSongs, timeGivenInMilli) {
     // create new var: totalPlaylistDuration (int) time in milliseconds
     var totalPlaylistDuration = 0;
 
@@ -112,8 +112,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //    after the API code downloads.
 var player;
 const ytplayer = function onYouTubeIframeAPIReady(videoId) {
-    // var videoId = "M7lc1UVf-VE";
-    console.log(videoId);
+    player = "";
+    console.log(`youtubeId: ${videoId}`);
 
     player = new YT.Player("player", {
         height: "390",
