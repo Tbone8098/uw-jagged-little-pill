@@ -38,6 +38,7 @@ header {
     padding: 5% 5%;
     text-align: center;
     font-family: 'Old Standard TT', serif;
+    border-radius: 25px;
 }
 
 footer {
