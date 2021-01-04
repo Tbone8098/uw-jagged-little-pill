@@ -19,12 +19,25 @@ $(document).ready(function () {
             }
 
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
-            
+            // and go to dashboard
             location.href = "dashboard.html";
         }
-        // and go to dashboard
+        
     })
         // else populate and display error message
    
+        var unsplashApi =`http://unsplash.com/?client_id=gSpFkJi69t9bWwKIFq80kb4KWfaf4xLwVPON1yTJD4c&query=happy&orientation=landscape&featured`
+        
+        $.ajax({
+            url: unsplashApi,
+            method: "GET"
+          }).then(function(response) {
+            console.log(response);
+            
+          });
 });
     
+
+
+//get random photo
+// GET /photos/random
