@@ -1,12 +1,63 @@
-.form {
+Body {  
+  padding : 0px ;
+  margin : 0px ;
+  width : 100wv ;
+  height : 100hv;
+  background-image: url("https://i.postimg.cc/nzkwL4gB/Landing-Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main {
     display: flex;
-    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
 }
 
-.formInputDiv {
-    margin: auto;
-    width: 20%;
+nav {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    padding: 3%;
+    color: #20C0D6;
 }
 
-/* ************* Utilities ************** */
-/* btns */
+form {
+    background: rgba(209, 243, 248, 0.8);
+    padding: 3%;
+    border-radius: 25px;
+    box-shadow: 4px 4px rgba(209, 243, 248, 0.2);
+    font-family: 'Lato', sans-serif;
+}
+
+header {
+    background: rgba(209, 243, 248, 0.7);
+    padding: 5% 5%;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    border-radius: 25px;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoSpan {
+    background: rgba(239, 248, 248, 0.1);
+    padding: 10px;
+    font-family: 'Noto Serif', serif;
+}
+
+#resetBtn {
+position: absolute;
+top: 50px;
+right: 0;
+font-family: 'Lato', sans-serif;
+}
