@@ -66,6 +66,9 @@ right: 0;
 font-family: 'Lato', sans-serif;
 }
 
+#nameDisplay{
+    text-transform: capitalize;
+}
 
 /* bg color */
 .cntrlBtn{
