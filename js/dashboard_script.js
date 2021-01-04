@@ -10,7 +10,7 @@ $(document).ready(async function () {
 
     await makePlayList(allSongs, timeGivenInMilli);
 
-    ytplayer(playList[songCount]);
+    setupApi();
 });
 
 // ********************************************************
@@ -95,10 +95,7 @@ function makePlayList(allSongs, timeGivenInMilli) {
 // ********************************************************
 function nextSong() {
     console.log("playing next song");
-
-    $("#player").html("");
-
-    ytplayer(playList[songCount]);
+    setupApi();
 }
 
 // ********************************************************
@@ -113,6 +110,8 @@ function setupApi() {
     tag.src = "https://www.youtube.com/iframe_api";
     firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    ytplayer(playList[songCount]);
 }
 var player;
 const ytplayer = function onYouTubeIframeAPIReady(videoId) {
