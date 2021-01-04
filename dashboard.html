@@ -15,20 +15,21 @@
     <!-- NavBar -->
     <nav class="row">
         <h1>Mood Tunes</h1>
+        <a href="/index.html" class="button button-primary" id="resetBtn">Start Over</a>
     </nav>
 
-    <main class="container">
+    <header class="row">
+        <h3 id="nameDisplay"></h3>
+        <h5>Here is your personalized Playlist!</h5>
+    </header>
 
-        <header class="row">
-            <h2> Welcome *Name*</h2>
+    <main>
 
-        </header>
 
         <!-- YouTube Wrapper -->
         <section class="row" id="ytWrapper">
             <!-- YouTube Player -->
-            <section id="youtubeDisplay"
-                class="uk-position-large uk-position-bottom-left uk-overlay-primary uk-overflow-auto uk-responsive">
+            <section id="youtubeDisplay">
                 <iframe width="640" height="360" src="https://www.youtube.com/embed/bixuI_GV5I0?autoplay=1"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
