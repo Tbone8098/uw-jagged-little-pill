@@ -182,6 +182,8 @@ $(document).ready(function () {
             player.playVideo();
         } else if (playerState === 1) {
             player.pauseVideo();
+        } else if (playerState === 2) {
+            player.playVideo();
         }
     });
 });
