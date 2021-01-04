@@ -1,65 +1,153 @@
+// ********************************************************
+// ******************************************************** on Page Load
+// ********************************************************
+var songCount = 0;
+var playList = [];
 $(document).ready(async function () {
-    // get mood from localstorage
-    var userObject = JSON.parse(localStorage.getItem("userInfo"));
-    var name = userObject["name"];
-    var mood = userObject["mood"];
-    var timeGiven = userObject["time"];
-    console.log(`name:${name} mood:${mood} timeGiven:${timeGiven}`);
+    var userObject = await JSON.parse(localStorage.getItem("userInfo"));
+    var timeGivenInMilli = userObject["time"] * 60 * 1000;
+    const allSongs = await getSongsAPI(userObject["mood"]);
 
-    var timeGivenInMilli = timeGiven * 60 * 1000;
-    console.log(timeGivenInMilli);
+    await makePlayList(allSongs, timeGivenInMilli);
 
-    // call sheets API and get all songs for mood.
-    const allSongs = await getSongsAPI(mood);
-    console.log(allSongs);
+    setupApi();
+});
 
+// ********************************************************
+// ******************************************************** Get allSongs
+// ********************************************************
+async function getSongsAPI(mood) {
+    moods = ["happy", "sad", "anger", "contemplative", "calm", "energizing"];
+    moodIndex = moods.indexOf(mood) + 1;
+
+    const jsonSheet = await $.ajax({
+        url: `https://spreadsheet.google.com/feeds/cells/1SorEST9_mOlFYCMDWF9ysRn75HOT4X4Q8B0KmMLyOgc/${moodIndex}/public/full?alt=json`,
+        method: "get",
+    });
+
+    var jsonSheetEntries = jsonSheet["feed"]["entry"];
+    var allSongs = [];
+    var headers = [];
+    var items = {};
+
+    for (let i = 0; i < jsonSheetEntries.length; i++) {
+        var entry = jsonSheetEntries[i];
+        if (entry["gs$cell"].row == 1) {
+            headers.push(entry.content.$t);
+        }
+        if (entry["gs$cell"].row > 1) {
+            // console.log(i % headers.length);
+            items[headers[i % headers.length]] = entry.content.$t;
+            if (i % headers.length === headers.length - 1) {
+                allSongs.push(items);
+                items = {};
+            }
+        }
+    }
+
+    return allSongs;
+}
+
+// ********************************************************
+// ******************************************************** Create Playlist
+// ********************************************************
+
+function makePlayList(allSongs, timeGivenInMilli) {
     // create new var: totalPlaylistDuration (int) time in milliseconds
     var totalPlaylistDuration = 0;
 
-    // create new var: Playlist (dict)
-    var playList = [];
+    var playListTimes = [];
 
     // loop (while) through length of returned array
     var songsNumAlreadyChosen = [];
     var i = 0;
     while (totalPlaylistDuration < timeGivenInMilli) {
         // break if it has added all songs to the playlist
-        if (i >= allSongs[mood].length) {
+        if (i >= allSongs.length) {
             // TODO add error message saying all songs are added to playlist
             break;
         }
         // pick one at random
-        var ranNum = Math.floor(Math.random() * allSongs[mood].length);
+        var ranNum = Math.floor(Math.random() * allSongs.length);
         if (songsNumAlreadyChosen.indexOf(ranNum) == -1) {
             songsNumAlreadyChosen.push(ranNum);
-            var currentSong = allSongs[mood][ranNum];
+            currentSong = allSongs[ranNum];
 
             // add to playlist
-            playList.push(currentSong.youtubeId);
-
+            playList.push(currentSong["Youtube ID"]);
             // get the duration in milliseconds
-            var durationArray = currentSong.duration.split(":");
+            var durationArray = currentSong.Duration.split(":");
             var hoursInMilli = parseInt(durationArray[0]) * 60 * 60 * 1000;
             var minutesInMilli = parseInt(durationArray[1]) * 60 * 1000;
             var secondsInMilli = parseInt(durationArray[2]) * 1000;
             var duration = hoursInMilli + minutesInMilli + secondsInMilli;
-
+            // add time to playListTimes
+            playListTimes.push(duration);
             // add duration from api to totalPlaylistDuration
             totalPlaylistDuration += duration;
             i++;
         }
     }
+}
 
-    console.log(totalPlaylistDuration);
-    console.log(playList);
-});
+// ********************************************************
+// ******************************************************** Next Song
+// ********************************************************
+function nextSong() {
+    console.log("playing next song");
+    setupApi();
+}
 
-// functions **************************
-async function getSongsAPI(mood) {
-    const allSongs = await $.ajax({
-        url: `https://api.sheety.co/e91f710c44d8c38d5fbfefc51481c7ee/songs/${mood}`,
-        method: "get",
+// ********************************************************
+// ******************************************************** YouTube
+// ********************************************************
+var tag = document.createElement("script");
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+function setupApi() {
+    // 2. This code loads the IFrame Player API code asynchronously.
+    tag = document.createElement("script");
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    ytplayer(playList[songCount]);
+}
+var player;
+const ytplayer = function onYouTubeIframeAPIReady(videoId) {
+    console.log(`youtubeId: ${videoId}`);
+
+    player = new YT.Player("player", {
+        height: "390",
+        width: "640",
+        videoId: videoId,
+        events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+        },
     });
+};
 
-    return allSongs;
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+var done = false;
+function onPlayerStateChange(event) {
+    if (event.data == 0) {
+        stopVideo();
+        songCount++;
+        nextSong();
+    }
+}
+function stopVideo() {
+    console.log("stopping video");
+    player.stopVideo();
 }
