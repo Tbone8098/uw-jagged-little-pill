@@ -6,12 +6,16 @@ $(document).ready(function () {
         var nameInput = $("#name-input").val();
         var moodInput = $("#mood-input").val();
         var timeInput = $("#time-input").val();
-        console.log(nameInput, moodInput, timeInput);
+        console.log(`inputs: ${nameInput} ${moodInput} ${timeInput}`);
         // check to see if info on form exists
-        if (nameInput === "" || moodInput === "" || timeInput === "") {
+        if (
+            nameInput === undefined ||
+            moodInput === undefined ||
+            timeInput === undefined
+        ) {
             alert("Please enter valid information");
-            // if true then store to localstorage
         } else {
+            // if true then store to localstorage
             var userInfo = {
                 name: nameInput,
                 mood: moodInput,
@@ -22,7 +26,5 @@ $(document).ready(function () {
 
             location.href = "dashboard.html";
         }
-        // and go to dashboard
     });
-    // else populate and display error message
 });
