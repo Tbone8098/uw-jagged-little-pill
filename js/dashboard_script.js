@@ -137,6 +137,7 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
     if (event.data == 0) {
+        stopVideo();
         songCount++;
         nextSong();
     }
