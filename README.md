@@ -4,11 +4,11 @@
 
 (to delete) Concise explanation of the idea (ideally include a rough sketch). Hint: you can add images to this doc!
 
-The user will be able to give a mood and an amount of time they wish to walk. Then the program will generate a playlist based on that mood and the length of time so that the user will be able to listen to all the songs chosen during their walk session.
+The user will be able to give a mood and an amount of time they wish to listen. Then the program will generate a playlist based on that mood and the length of time so that the user will be able to listen to all the songs chosen during their session.
 
 ## Team
 
-@Doug @Claire
+@Doug @Claire @Tyler
 
 ## Problem
 
@@ -22,9 +22,8 @@ We are trying to solve the problem of not having on hand a playlist that fits th
 Users will be able to...
 
 1. Input their mood
-2. Input the mount of time they have available for a walk
+2. Input the mount of time they have available to listen
 3. get an auto generated playlist from spotify that matches their current mood.
-4. get a map in which they will see a route for them to walk that matches the length of the playlist
 
 ## Technologies Used
 
@@ -37,5 +36,5 @@ Users will be able to...
 
 ### Links to Api's docs
 
-Spotify: https://developer.spotify.com/documentation/web-api/reference-beta/
-Traveltime: https://traveltime.com/docs/api/overview/introduction?ref=apilist.fun
+YouTube: https://developers.google.com/youtube/v3/getting-started
+Unsplash: https://unsplash.com/documentation
