@@ -4,13 +4,30 @@
 var songCount = 0;
 var playList = [];
 $(document).ready(async function () {
+    var userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    var mood = userInfo.mood;
+
+    var unsplashApi = `https://api.unsplash.com/search/photos/random?client_id=SZbxYpkVWzGzWeanAOAvuU8zlu0eqzAueOem0YFlS_g&query=${mood}`;
+
+    $.ajax({
+        url: unsplashApi,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response);
+        var body = $(".container");
+        console.log(response);
+        var bg = `url(${response.results[0].urls.regular})`;
+        body.css("background-image", bg);
+    });
+
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
     const allSongs = await getSongsAPI(userObject["mood"]);
 
     await makePlayList(allSongs, timeGivenInMilli);
 
-    setupApi();
+    ytplayer(playList[songCount]);
 });
 
 // ********************************************************
@@ -106,16 +123,7 @@ var tag = document.createElement("script");
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName("script")[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-function setupApi() {
-    // 2. This code loads the IFrame Player API code asynchronously.
-    tag = document.createElement("script");
 
-    tag.src = "https://www.youtube.com/iframe_api";
-    firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    ytplayer(playList[songCount]);
-}
 var player;
 const ytplayer = function onYouTubeIframeAPIReady(videoId) {
     console.log(`youtubeId: ${videoId}`);
