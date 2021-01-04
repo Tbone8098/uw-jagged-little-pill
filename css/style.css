@@ -1,8 +1,35 @@
-body {  
+Body {  
   padding : 0px ;
   margin : 0px ;
   width : 100wv ;
   height : 100hv;
   background-image: url("https://i.postimg.cc/nzkwL4gB/Landing-Background.png");
   background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+    color: #20B9D1;
+}
+
+form {
+    background: rgba(209, 243, 248, 0.8);
+    padding: 3%;
+    border-radius: 25px;
+    box-shadow: 4px 4px rgba(209, 243, 248, 0.2);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
 }
