@@ -112,7 +112,8 @@ function makePlayList(allSongs, timeGivenInMilli) {
 // ********************************************************
 function nextSong() {
     console.log("playing next song");
-    setupApi();
+    ytplayer(playList[songCount]);
+    // setupApi();
 }
 
 // ********************************************************
@@ -126,7 +127,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 const ytplayer = function onYouTubeIframeAPIReady(videoId) {
-    console.log(`youtubeId: ${videoId}`);
+    console.log("youtubeId: " + videoId);
 
     player = new YT.Player("player", {
         height: "390",
@@ -150,6 +151,7 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
     if (event.data == 0) {
+        console.log("player state change");
         stopVideo();
         songCount++;
         nextSong();
