@@ -180,13 +180,13 @@ $(document).ready(function () {
         playerState = player.getPlayerState();
         if (playerState < 1) {
             player.playVideo();
-            playPauseBtn.text("&#9612");
+            playPauseBtn.html("&#9612");
         } else if (playerState === 1) {
             player.pauseVideo();
-            playPauseBtn.text("&5126");
+            playPauseBtn.html("&5126");
         } else if (playerState === 2) {
             player.playVideo();
-            playPauseBtn.text("&#9612");
+            playPauseBtn.html("&#9612");
         }
     });
 });
