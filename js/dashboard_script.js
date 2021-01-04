@@ -142,5 +142,6 @@ function onPlayerStateChange(event) {
     }
 }
 function stopVideo() {
+    console.log("stopping video");
     player.stopVideo();
 }
