@@ -32,6 +32,7 @@ $(document).ready(function () {
         method: "GET",
     }).then(function (response) {
         console.log(response);
+        .attr("src", results.[0].urls.regular);
     });
 });
 
