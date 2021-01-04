@@ -8,11 +8,7 @@ $(document).ready(function () {
         var timeInput = $("#time-input").val();
         console.log(`inputs: ${nameInput} ${moodInput} ${timeInput}`);
         // check to see if info on form exists
-        if (
-            nameInput === undefined ||
-            moodInput === undefined ||
-            timeInput === undefined
-        ) {
+        if (nameInput === "" || moodInput === "" || timeInput === "") {
             alert("Please enter valid information");
         } else {
             // if true then store to localstorage
