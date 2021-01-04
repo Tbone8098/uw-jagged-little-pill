@@ -1,71 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta
-        name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- JQuery -->
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        <!-- Local JS -->
-        <script src="./js/dashboard_script.js"></script>
-        <!-- UiKit CDN -->
-        <link
-        rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/css/uikit.min.css"/>
-        <!-- local CSS -->
-        <link
-        rel="stylesheet" href="./css/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Skeleton CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.css">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Jagged Little Pill</title>
+</head>
 
-        <title>Jagged Little Pill</title>
-    </head>
+<body class="container">
+    <!-- NavBar -->
+    <nav class="row">
+        <h1>Mood Tunes</h1>
+        <a href="/index.html" class="button button-primary" id="resetBtn">Start Over</a>
+    </nav>
 
-    <body>
-        <!-- NavBar -->
-        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
-            <div class="uk-navbar-center">
-                <a href="/index.html" class="btn">Back</a>
-                <h1 class="uk-navbar-item uk-logo">Mood Tunes</h1>
-            </nav>
+    <header class="row">
+        <h3 id="nameDisplay"></h3>
+        <h5>Here is your personalized Playlist!</h5>
+    </header>
 
-            <main class="uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" uk-grid>
+    <main>
 
-                <div>
 
-                    <div class="uk-inline">
-                        <img
-                        src="https://i.postimg.cc/nzkwL4gB/Landing-Background.png" alt="Glass ball in hand reflecting forest">
+        <!-- YouTube Wrapper -->
+        <section class="row" id="ytWrapper">
+            <!-- YouTube Player -->
+            <section id="youtubeDisplay">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/bixuI_GV5I0?autoplay=1"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </section>
+        </section>
 
-                        <!-- PlayList Overlay (Top-Left) -->
-                        <div class="uk-position-large uk-position-top-left uk-overlay-primary uk-overflow-auto">
 
-                            <h2>Playlist</h2>
 
-                            <ol id="playlistDisplay">
-                                <li>Song 1</li>
-                                <li>Song 2</li>
-                                <li>Song 3</li>
-                            </ol>
 
-                        </div>
+    </main>
 
-                        <!-- YouTube Player -->
-                        <section id="youtubeDisplay" class="uk-position-large uk-position-bottom-left uk-overlay-primary uk-overflow-auto uk-responsive">
+    <footer>
+        <img src="https://i.postimg.cc/Z5pBmxbz/Jagged-Little-Pill-PNG-1.png" alt="Mood Tunes">
+    </footer>
 
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/bixuI_GV5I0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                        </section>
-
-                        <!-- Map Display -->
-                        <section id="mapDisplay" class="uk-position-large uk-position-bottom-right uk-overlay-primary uk-overflow-auto uk-responsive"></section>
-
-                    </div>
-                </div>
-            </main>
-
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-            <!-- UiKit JS -->
-            <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/js/uikit.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.5/dist/js/uikit-icons.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- Local JS -->
+    <script src="./js/script.js"></script>
+</body>
 
         </body>
     </body>
