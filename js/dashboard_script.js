@@ -177,13 +177,13 @@ $(document).ready(function () {
     });
 
     playPauseBtn.on("click", (e) => {
-        playerState = player.getPlayerState();
+        var playerState = player.getPlayerState();
         if (playerState < 1) {
             player.playVideo();
             playPauseBtn.html("&#9612");
         } else if (playerState === 1) {
             player.pauseVideo();
-            playPauseBtn.html("&#5126");
+            playPauseBtn.html("&#5125");
         } else if (playerState === 2) {
             player.playVideo();
             playPauseBtn.html("&#9612");
