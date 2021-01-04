@@ -8,7 +8,7 @@ $(document).ready(async function () {
 
     var mood = userInfo.mood;
 
-    var unsplashApi = `https://api.unsplash.com/search/photos/random?client_id=evk2OFv8EUpNIcRxwJfHmhBp_Z0G92ydwEIckYe1sh4&query=${mood}`;
+    var unsplashApi = `https://api.unsplash.com/search/photos/?client_id=gSpFkJi69t9bWwKIFq80kb4KWfaf4xLwVPON1yTJD4c&query=${mood}&orientation=landscape`;
 
     $.ajax({
         url: unsplashApi,
@@ -34,7 +34,7 @@ $(document).ready(async function () {
 // ******************************************************** Get allSongs
 // ********************************************************
 async function getSongsAPI(mood) {
-    moods = ["happy", "sad", "angry", "contemplative", "calm", "energized"];
+    moods = ["happy", "sad", "angry", "contemplative", "calm", "energetic"];
     moodIndex = moods.indexOf(mood) + 1;
 
     const jsonSheet = await $.ajax({
