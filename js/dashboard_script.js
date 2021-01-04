@@ -8,7 +8,7 @@ $(document).ready(async function () {
 
     var mood = userInfo.mood;
 
-    var unsplashApi = `https://api.unsplash.com/search/photos/random?client_id=SZbxYpkVWzGzWeanAOAvuU8zlu0eqzAueOem0YFlS_g&query=${mood}`;
+    var unsplashApi = `https://api.unsplash.com/search/photos/random?client_id=evk2OFv8EUpNIcRxwJfHmhBp_Z0G92ydwEIckYe1sh4&query=${mood}`;
 
     $.ajax({
         url: unsplashApi,
@@ -24,9 +24,9 @@ $(document).ready(async function () {
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
     const allSongs = await getSongsAPI(userObject["mood"]);
-
+    console.log(allSongs)
     await makePlayList(allSongs, timeGivenInMilli);
-
+    console.log(playList)
     ytplayer(playList[songCount]);
 });
 
@@ -34,7 +34,7 @@ $(document).ready(async function () {
 // ******************************************************** Get allSongs
 // ********************************************************
 async function getSongsAPI(mood) {
-    moods = ["happy", "sad", "anger", "contemplative", "calm", "energizing"];
+    moods = ["happy", "sad", "angry", "contemplative", "calm", "energized"];
     moodIndex = moods.indexOf(mood) + 1;
 
     const jsonSheet = await $.ajax({
@@ -69,7 +69,7 @@ async function getSongsAPI(mood) {
 // ******************************************************** Create Playlist
 // ********************************************************
 
-function makePlayList(allSongs, timeGivenInMilli) {
+function makePlayList(songList, timeInMilli) {
     // create new var: totalPlaylistDuration (int) time in milliseconds
     var totalPlaylistDuration = 0;
 
@@ -78,21 +78,21 @@ function makePlayList(allSongs, timeGivenInMilli) {
     // loop (while) through length of returned array
     var songsNumAlreadyChosen = [];
     var i = 0;
-    while (totalPlaylistDuration < timeGivenInMilli) {
+    while (totalPlaylistDuration < timeInMilli) {
         // break if it has added all songs to the playlist
-        if (i >= allSongs.length) {
+        if (i >= songList.length) {
             // TODO add error message saying all songs are added to playlist
             break;
         }
         // pick one at random
-        var ranNum = Math.floor(Math.random() * allSongs.length);
+        var ranNum = Math.floor(Math.random() * songList.length);
         if (songsNumAlreadyChosen.indexOf(ranNum) == -1) {
             songsNumAlreadyChosen.push(ranNum);
-            currentSong = allSongs[ranNum];
-
+            currentSong = songList[ranNum];
             // add to playlist
-            playList.push(currentSong["Youtube ID"]);
+            playList.push(currentSong["YouTube ID"]);
             // get the duration in milliseconds
+            console.log(currentSong)
             var durationArray = currentSong.Duration.split(":");
             var hoursInMilli = parseInt(durationArray[0]) * 60 * 60 * 1000;
             var minutesInMilli = parseInt(durationArray[1]) * 60 * 1000;
