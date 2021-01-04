@@ -1,14 +1,14 @@
 // ********************************************************
 // ******************************************************** on Page Load
 // ********************************************************
+var songCount = 0;
+var allSongs;
 $(document).ready(async function () {
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
-    const allSongs = await getSongsAPI(userObject["mood"]);
+    allSongs = await getSongsAPI(userObject["mood"]);
 
-    var ytId = allSongs[0]["YouTube ID"];
-
-    ytplayer(allSongs[0]["Youtube ID"]);
+    ytplayer(allSongs[songCount]["Youtube ID"]);
 });
 
 // ********************************************************
@@ -44,6 +44,11 @@ async function getSongsAPI(mood) {
 
     return allSongs;
 }
+
+function nextSong() {
+    console.log(allSongs[songCount]);
+}
+
 // ********************************************************
 // ******************************************************** YouTube
 // ********************************************************
@@ -82,9 +87,9 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        done = true;
+    if (event.data == 0) {
+        songCount++;
+        nextSong();
     }
 }
 function stopVideo() {
