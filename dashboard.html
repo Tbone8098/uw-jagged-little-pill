@@ -6,18 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Skeleton CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.css">
+    <!-- Font Styles -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&family=Old+Standard+TT&display=swap"
+        rel="stylesheet">
     <!-- Local CSS -->
     <link rel="stylesheet" href="./css/style.css">
-    <title>Jagged Little Pill</title>
+    <title>Dashboard</title>
 </head>
 
 <body class="container">
     <!-- NavBar -->
     <nav class="row">
-        <h1>Mood Tunes</h1>
+        <h1><span id="logoSpan">Mood Tunes</span></h1>
         <a href="/index.html" class="button button-primary" id="resetBtn">Start Over</a>
     </nav>
 
+    <!-- Welcome Message -->
     <header class="row">
         <h3 id="nameDisplay"></h3>
         <h5>Here is your personalized Playlist!</h5>
