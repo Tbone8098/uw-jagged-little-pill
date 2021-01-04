@@ -108,17 +108,6 @@ function makePlayList(songList, timeInMilli) {
 }
 
 // ********************************************************
-// ******************************************************** Next Song
-// ********************************************************
-function nextSong() {
-    console.log("playing next song");
-    player.loadVideoById(playList[songCount], 0);
-    // $("#player").remove();
-    // $("<div>").attr("id", "player");
-    // setupApi();
-}
-
-// ********************************************************
 // ******************************************************** YouTube
 // ********************************************************
 var tag = document.createElement("script");
@@ -128,16 +117,6 @@ var firstScriptTag = document.getElementsByTagName("script")[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-function setupApi() {
-    tag = document.createElement("script");
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    player;
-
-    ytPlayer(playList[songCount]);
-}
 const ytPlayer = function onYouTubeIframeAPIReady(videoId) {
     console.log("youtubeId: " + videoId);
 
@@ -166,7 +145,6 @@ function onPlayerStateChange(event) {
     if (event.data == 0) {
         console.log("player state change");
         stopVideo();
-        songCount++;
         nextSong();
     }
 }
@@ -174,3 +152,36 @@ function stopVideo() {
     console.log("stopping video");
     player.stopVideo();
 }
+
+function nextSong() {
+    songCount++;
+    player.loadVideoById(playList[songCount], 0);
+}
+
+function previousSong() {
+    songCount--;
+    player.loadVideoById(playList[songCount], 0);
+}
+
+$(document).ready(function () {
+    var nextBtn = $(".ytNext");
+    var previousBtn = $(".ytPrevious");
+    var ytPlayPauseBtn = $(".ytPlayPause");
+
+    nextBtn.on("click", (e) => {
+        nextSong();
+    });
+
+    previousBtn.on("click", (e) => {
+        previousSong();
+    });
+
+    ytPlayPauseBtn.on("click", (e) => {
+        playerState = player.getPlayerState();
+        if (playerState < 1) {
+            player.playVideo();
+        } else if (playerState === 1) {
+            player.pauseVideo();
+        }
+    });
+});

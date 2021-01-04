@@ -60,3 +60,9 @@ top: 50px;
 right: 0;
 font-family: 'Lato', sans-serif;
 }
+
+
+/* bg color */
+.bg-white{
+    background: white;
+}
