@@ -24,9 +24,9 @@ $(document).ready(async function () {
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
     const allSongs = await getSongsAPI(userObject["mood"]);
-    console.log(allSongs)
+    console.log(allSongs);
     await makePlayList(allSongs, timeGivenInMilli);
-    console.log(playList)
+    console.log(playList);
     ytplayer(playList[songCount]);
 });
 
@@ -92,7 +92,7 @@ function makePlayList(songList, timeInMilli) {
             // add to playlist
             playList.push(currentSong["YouTube ID"]);
             // get the duration in milliseconds
-            console.log(currentSong)
+            console.log(currentSong);
             var durationArray = currentSong.Duration.split(":");
             var hoursInMilli = parseInt(durationArray[0]) * 60 * 60 * 1000;
             var minutesInMilli = parseInt(durationArray[1]) * 60 * 1000;
@@ -150,6 +150,7 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
+    console.log(event.data);
     if (event.data == 0) {
         console.log("player state change");
         stopVideo();
