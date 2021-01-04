@@ -6,6 +6,9 @@ var playList = [];
 $(document).ready(async function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+    var nameString = "Hello " + userInfo["name"];
+    $("#nameDisplay").text(nameString);
+
     var mood = userInfo.mood;
 
     var unsplashApi = `https://api.unsplash.com/search/photos/?client_id=gSpFkJi69t9bWwKIFq80kb4KWfaf4xLwVPON1yTJD4c&query=${mood}&orientation=landscape`;
@@ -24,10 +27,10 @@ $(document).ready(async function () {
     var userObject = await JSON.parse(localStorage.getItem("userInfo"));
     var timeGivenInMilli = userObject["time"] * 60 * 1000;
     const allSongs = await getSongsAPI(userObject["mood"]);
-    console.log(allSongs)
+    console.log(allSongs);
     await makePlayList(allSongs, timeGivenInMilli);
-    console.log(playList)
-    ytplayer(playList[songCount]);
+    console.log(playList);
+    ytPlayer(playList[songCount]);
 });
 
 // ********************************************************
@@ -92,7 +95,7 @@ function makePlayList(songList, timeInMilli) {
             // add to playlist
             playList.push(currentSong["YouTube ID"]);
             // get the duration in milliseconds
-            console.log(currentSong)
+            console.log(currentSong);
             var durationArray = currentSong.Duration.split(":");
             var hoursInMilli = parseInt(durationArray[0]) * 60 * 60 * 1000;
             var minutesInMilli = parseInt(durationArray[1]) * 60 * 1000;
@@ -108,15 +111,6 @@ function makePlayList(songList, timeInMilli) {
 }
 
 // ********************************************************
-// ******************************************************** Next Song
-// ********************************************************
-function nextSong() {
-    console.log("playing next song");
-    ytplayer(playList[songCount]);
-    // setupApi();
-}
-
-// ********************************************************
 // ******************************************************** YouTube
 // ********************************************************
 var tag = document.createElement("script");
@@ -126,7 +120,7 @@ var firstScriptTag = document.getElementsByTagName("script")[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-const ytplayer = function onYouTubeIframeAPIReady(videoId) {
+const ytPlayer = function onYouTubeIframeAPIReady(videoId) {
     console.log("youtubeId: " + videoId);
 
     player = new YT.Player("player", {
@@ -150,10 +144,10 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
+    console.log(event.data);
     if (event.data == 0) {
         console.log("player state change");
         stopVideo();
-        songCount++;
         nextSong();
     }
 }
@@ -161,3 +155,41 @@ function stopVideo() {
     console.log("stopping video");
     player.stopVideo();
 }
+
+function nextSong() {
+    songCount++;
+    player.loadVideoById(playList[songCount], 0);
+}
+
+function previousSong() {
+    songCount--;
+    player.loadVideoById(playList[songCount], 0);
+}
+
+$(document).ready(function () {
+    var nextBtn = $(".ytNext");
+    var previousBtn = $(".ytPrevious");
+    var playPauseBtn = $(".ytPlayPause");
+
+    nextBtn.on("click", (e) => {
+        nextSong();
+    });
+
+    previousBtn.on("click", (e) => {
+        previousSong();
+    });
+
+    playPauseBtn.on("click", (e) => {
+        var playerState = player.getPlayerState();
+        if (playerState < 1) {
+            player.playVideo();
+            playPauseBtn.html("Pause");
+        } else if (playerState === 1) {
+            player.pauseVideo();
+            playPauseBtn.html("Play");
+        } else if (playerState === 2) {
+            player.playVideo();
+            playPauseBtn.html("Pause");
+        }
+    });
+});
