@@ -112,8 +112,10 @@ function makePlayList(songList, timeInMilli) {
 // ********************************************************
 function nextSong() {
     console.log("playing next song");
-    ytPlayer(playList[songCount]);
-    // setupApi();
+
+    $("#player").remove();
+    $("<div>").attr("id", "player");
+    setupApi();
 }
 
 // ********************************************************
@@ -125,6 +127,15 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName("script")[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+function setupApi() {
+    tag = document.createElement("script");
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    ytPlayer(playList[songCount]);
+}
 var player;
 const ytPlayer = function onYouTubeIframeAPIReady(videoId) {
     console.log("youtubeId: " + videoId);
