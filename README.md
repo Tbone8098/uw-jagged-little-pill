@@ -17,7 +17,7 @@ We are solving the problem of not having on hand a playlist that fits the users 
 
 ## Goals
 
-(to delete) What should customer be able to do when this initiative is 'done?'
+What should customer be able to do when this initiative is 'done?'
 Users will be able to...
 
 1. Input their name
