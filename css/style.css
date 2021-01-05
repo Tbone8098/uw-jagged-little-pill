@@ -52,6 +52,8 @@ footer {
 .controller {
     display: flex;
     justify-content: center;
+    position: relative;
+    bottom: 0;
 }
 
 .cntrlBtn{
@@ -67,13 +69,35 @@ footer {
 font-family: 'Lato', sans-serif;
 }
 
+
+#ytWrapper {
+height: 100%;
+width: 100%;
+}
+
+#youtubeDisplay {
+        position: relative;
+        padding-bottom: 60%; 
+        padding-top: 30px; 
+         
+        overflow: hidden; 
+    }
+
+#player {
+        position: absolute; 
+        /* top: 0; 
+        left: 0;  */
+        width: 100%; 
+        height: 100%;
+    }
+
+#nameDisplay{
+        text-transform: capitalize;
+    }
+
 @media (max-width: 425px) {
     nav {
         display: flex;
         flex-wrap: wrap;
     }
-#nameDisplay{
-    text-transform: capitalize;
-}
-
 }
