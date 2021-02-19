@@ -1,0 +1,14 @@
+1. sheet api
+- spotify fail because of no backend
+- found sheety 
+** only 200 calls
+** made our own
+** makes a api call to google sheets and gets the whole obj
+** must parse through the obj and put it in a order that will work for our system
+
+2. YouTube API
+- how it works
+** utilized youtube api that runs a script to create a iframe dynamically
+** uses the playlist to feed youtubeId's into some built-in functions for playing the next track. 
+** we also have created btns to pause, play, prev, and next. These rely on more Youtube API built-in functions 
+** every time the status changes on the youtube iframe it sends a status code. we attached listeners 
